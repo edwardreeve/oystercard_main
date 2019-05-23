@@ -11,14 +11,16 @@ describe JourneyLog do
   context 'Given that a journey is started' do
     before(:each) { subject.start(station) }
     it 'start should result in a journey with an entry station' do
-      expect(subject.journey.entry_station).to eq(station)
+      expect(subject.journeys.last.entry_station).to eq(station)
     end
 
     it 'current journey should return journey if incomplete' do
-      expect(subject.current_journey).to eq(subject.journey)
+      expect(subject.current_journey).to eq(subject.journeys.last)
     end
 
     it 'current journey should create new journey if not' do
+      subject.finish(station)
+      expect(subject.current_journey).to
     end
   end
 end

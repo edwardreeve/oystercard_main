@@ -1,17 +1,21 @@
 # Stores a history of all journeys etc
 class JourneyLog
-  attr_reader :journey
+  attr_reader :journeys
+
   def initialize(journey = Journey.new)
-    @journey = journey
+    @journeys = [journey]
   end
 
   def start(station)
-    @journey.start(station)
+    @journeys.last.start(station)
   end
 
-  def current_journey
-    unless @journey.complete? 
-      @journey
+  def finish(station)
+    @journeys.last.finish(station)
+  end
+
+  def current_journey(journey = Journey.new)
+    @journeys.last.complete? ? @journeys << journey : @journeys.last
     end
   end
 end
