@@ -5,6 +5,7 @@ class Oystercard
   MIN_BALANCE = Journey::MINIMUM_FARE
   MAX_ERROR = "Cannot top-up beyond £#{MAX_BALANCE / 100}".freeze
   MIN_ERROR = "Minimum fare of £#{MIN_BALANCE / 100} is required to touch in".freeze
+  
   def initialize(balance = 0)
     @balance = balance
     @journey_list = []
@@ -30,7 +31,7 @@ class Oystercard
 
   def touch_out(exit_station)
     @current_journey.finish(exit_station)
-    @journey_list.push(@current_journey.journey_hash)
+    @journey_list.push(@current_journey.hash)
     charge
   end
 

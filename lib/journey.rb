@@ -12,15 +12,15 @@ class Journey
     @exit_station = station
   end
 
-  def completed
+  def complete?
     !@entry_station.nil? && !@exit_station.nil?
   end
 
   def fare
-    completed == true ? MINIMUM_FARE : PENALTY
+    complete? ? MINIMUM_FARE : PENALTY
   end
 
-  def journey_hash
+  def hash
     { entry: @entry_station, exit: @exit_station }
   end
 end

@@ -31,8 +31,8 @@ describe Journey do
       subject.start(station)
       subject.finish(station)
     end
-    it 'should shoew the journey as complete' do
-      expect(subject.completed).to eq(true)
+    it 'should show the journey as complete' do
+      expect(subject.complete?).to eq(true)
     end
     it 'should charge the minimum fare' do
       expect(subject.fare).to eq(Journey::MINIMUM_FARE)
