@@ -16,6 +16,5 @@ class JourneyLog
 
   def current_journey(journey = Journey.new)
     @journeys.last.complete? ? @journeys << journey : @journeys.last
-    end
   end
 end
