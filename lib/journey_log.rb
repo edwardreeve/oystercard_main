@@ -2,19 +2,26 @@
 class JourneyLog
   attr_reader :journeys
 
-  def initialize(journey = Journey.new)
-    @journeys = [journey]
+  def initialize(journey = Journey)
+    @journeys = [journey.new]
+    @journey = journey
   end
 
   def start(station)
-    @journeys.last.start(station)
+    journey = @journey.new
+    journey.start(station)
+    @journeys << journey
   end
 
   def finish(station)
-    @journeys.last.finish(station)
+    current = current_journey
+    current.finish(station)
+    @journeys << current
   end
 
-  def current_journey(journey = Journey.new)
-    @journeys.last.complete? ? @journeys << journey : @journeys.last
+  private
+
+  def current_journey
+    @journeys.last.complete? ? @journey.new : @journeys.last
   end
 end

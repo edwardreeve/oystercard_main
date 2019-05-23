@@ -1,7 +1,7 @@
 # Stores all journey details
 class Journey
-  MINIMUM_FARE = 100
-  PENALTY = 600
+  MINIMUM_FARE = 1
+  PENALTY = 6
   attr_reader :entry_station, :exit_station
 
   def start(station)
@@ -16,11 +16,11 @@ class Journey
     !@entry_station.nil? && !@exit_station.nil?
   end
 
-  def fare
-    complete? ? MINIMUM_FARE : PENALTY
+  def new?
+    @entry_station.nil? && @exit_station.nil?
   end
 
-  def hash
-    { entry: @entry_station, exit: @exit_station }
+  def fare
+    complete? ? MINIMUM_FARE : PENALTY
   end
 end
